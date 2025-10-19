@@ -4,8 +4,10 @@ import SearchBar from "@/components/SearchBar";
 import CategoryFilter from "@/components/CategoryFilter";
 import VendorCard from "@/components/VendorCard";
 import { mockVendors, categories } from "@/data/mockVendors";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Vendors = () => {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -29,10 +31,10 @@ const Vendors = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2 text-foreground">
-            Find Local Vendors
+            {t('vendors.title')}
           </h1>
           <p className="text-muted-foreground text-lg">
-            Browse {mockVendors.length} trusted businesses in Mhasrul
+            {t('vendors.browse')} {mockVendors.length} {t('vendors.trustedBusinesses')}
           </p>
         </div>
 
@@ -41,11 +43,11 @@ const Vendors = () => {
           <SearchBar 
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search vendors, services, or locations..."
+            placeholder={t('vendors.searchPlaceholder')}
           />
           
           <div>
-            <h2 className="text-sm font-medium mb-3 text-foreground">Filter by Category</h2>
+            <h2 className="text-sm font-medium mb-3 text-foreground">{t('vendors.filterCategory')}</h2>
             <CategoryFilter
               categories={categories}
               selectedCategory={selectedCategory}
@@ -57,7 +59,7 @@ const Vendors = () => {
         {/* Results */}
         <div className="mb-6">
           <p className="text-sm text-muted-foreground">
-            Showing {filteredVendors.length} {filteredVendors.length === 1 ? 'vendor' : 'vendors'}
+            {t('vendors.showing')} {filteredVendors.length} {filteredVendors.length === 1 ? t('vendors.vendor') : t('vendors.vendors')}
           </p>
         </div>
 
@@ -71,7 +73,7 @@ const Vendors = () => {
         ) : (
           <div className="text-center py-16">
             <p className="text-muted-foreground text-lg">
-              No vendors found matching your search criteria
+              {t('vendors.noResults')}
             </p>
           </div>
         )}

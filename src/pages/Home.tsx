@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Store, Users, Star, MapPin, Search, Heart } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@/assets/hero-marketplace.jpg";
 
 const Home = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -26,25 +29,27 @@ const Home = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground leading-tight">
-              Discover Local
+              {t('home.title')}
               <span className="block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Vendors Near You
+                {t('home.subtitle')}
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Connect with trusted local businesses in Mhasrul, Nashik. From groceries to services, support your neighborhood vendors.
+              {t('home.description')}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/vendors">
                 <Button variant="hero" size="lg" className="gap-2">
                   <Search className="h-5 w-5" />
-                  Explore Vendors
+                  {t('home.exploreVendors')}
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" className="gap-2">
-                <Store className="h-5 w-5" />
-                Register Your Business
-              </Button>
+              <Link to="/auth">
+                <Button variant="outline" size="lg" className="gap-2">
+                  <Store className="h-5 w-5" />
+                  {t('home.registerBusiness')}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -54,7 +59,7 @@ const Home = () => {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
-            Why Choose LocalConnect?
+            {t('home.whyChoose')}
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -62,9 +67,9 @@ const Home = () => {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                 <Store className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-card-foreground">Local Vendors</h3>
+              <h3 className="text-xl font-semibold mb-2 text-card-foreground">{t('home.localVendors')}</h3>
               <p className="text-muted-foreground">
-                Discover and support small businesses in your neighborhood
+                {t('home.localVendorsDesc')}
               </p>
             </Card>
             
@@ -72,9 +77,9 @@ const Home = () => {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary/10 flex items-center justify-center">
                 <Star className="h-8 w-8 text-secondary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-card-foreground">Trusted Reviews</h3>
+              <h3 className="text-xl font-semibold mb-2 text-card-foreground">{t('home.trustedReviews')}</h3>
               <p className="text-muted-foreground">
-                Read genuine reviews from community members
+                {t('home.trustedReviewsDesc')}
               </p>
             </Card>
             
@@ -82,9 +87,9 @@ const Home = () => {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-accent/10 flex items-center justify-center">
                 <MapPin className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-card-foreground">Easy to Find</h3>
+              <h3 className="text-xl font-semibold mb-2 text-card-foreground">{t('home.easyToFind')}</h3>
               <p className="text-muted-foreground">
-                Search by location, category, or service type
+                {t('home.easyToFindDesc')}
               </p>
             </Card>
           </div>
@@ -97,14 +102,14 @@ const Home = () => {
           <Card className="p-12 text-center bg-gradient-to-r from-primary/5 to-secondary/5 border-border">
             <Heart className="h-16 w-16 mx-auto mb-6 text-primary" />
             <h2 className="text-3xl font-bold mb-4 text-foreground">
-              Support Your Local Community
+              {t('home.supportCommunity')}
             </h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Every purchase from a local vendor helps strengthen our neighborhood economy
+              {t('home.supportDesc')}
             </p>
             <Link to="/vendors">
               <Button variant="default" size="lg">
-                Start Exploring
+                {t('home.startExploring')}
               </Button>
             </Link>
           </Card>
